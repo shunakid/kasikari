@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-//
 import styled from 'styled-components'
 import { Responsive } from 'types/styles'
 import {
@@ -11,10 +10,9 @@ import {
   Space,
 } from 'utils/styles'
 
-// ボタンのバリアントを定義するために使用される型を定義。
+// ボタンのバリアント
 export type ButtonVariant = 'primary' | 'secondary' | 'danger'
 
-// Buttonコンポーネントのプロパティと型を定義。
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant
   fontSize?: Responsive<FontSize>
@@ -51,7 +49,6 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   }
 }
 
-// 定義されたボタンバリアントをvariantsオブジェクトに格納。
 const variants = {
   // プライマリ
   primary: {
@@ -97,15 +94,17 @@ const variants = {
   },
 }
 
-// Buttonコンポーネント本体、ButtonPropsから受け取った各プロパティに応じてスタイルを適用する。
+/**
+ * ボタン
+ * バリアント、色、タイポグラフィ、レイアウト、スペース関連のPropsを追加
+ */
 const Button = styled.button<ButtonProps>`
   ${({ variant, color, backgroundColor, pseudoClass, theme }) => {
+    // バリアントのスタイルの適用
     if (variant && variants[variant]) {
       const styles = []
-      // バリアントプロパティに対しては、variantsオブジェクト内のスタイルを適用。
       !color &&
         styles.push(toPropValue('color', variants[variant].color, theme))
-      // それ以外のプロパティに対しては、各プロパティに指定された値をスタイルに適用。
       !backgroundColor &&
         styles.push(
           toPropValue(
@@ -114,7 +113,6 @@ const Button = styled.button<ButtonProps>`
             theme,
           ),
         )
-      // 疑似クラスに対しては、ホバー時と無効化時のスタイルを別途定義。
       !pseudoClass &&
         styles.push(
           `&:hover {
