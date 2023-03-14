@@ -10,47 +10,57 @@ import {
   Space,
 } from 'utils/styles'
 
-// ボタンのバリアント
+/**
+ * ボタンの種類を表す列挙型
+ */
 export type ButtonVariant = 'primary' | 'secondary' | 'danger'
 
+/**
+ * ボタンのプロパティ
+ */
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: ButtonVariant
-  fontSize?: Responsive<FontSize>
-  fontWeight?: Responsive<string>
-  letterSpacing?: Responsive<LetterSpacing>
-  lineHeight?: Responsive<LineHeight>
-  textAlign?: Responsive<string>
-  color?: Responsive<Color>
-  backgroundColor?: Responsive<Color>
-  width?: Responsive<string>
-  height?: Responsive<string>
-  minWidth?: Responsive<string>
-  minHeight?: Responsive<string>
-  display?: Responsive<string>
-  border?: Responsive<string>
-  overflow?: Responsive<string>
-  margin?: Responsive<Space>
-  marginTop?: Responsive<Space>
-  marginRight?: Responsive<Space>
-  marginBottom?: Responsive<Space>
-  marginLeft?: Responsive<Space>
-  padding?: Responsive<Space>
-  paddingTop?: Responsive<Space>
-  paddingRight?: Responsive<Space>
-  paddingBottom?: Responsive<Space>
-  paddingLeft?: Responsive<Space>
+  variant?: ButtonVariant // ボタンの種類
+  fontSize?: Responsive<FontSize> // フォントサイズ
+  fontWeight?: Responsive<string> // フォントウェイト
+  letterSpacing?: Responsive<LetterSpacing> // 文字間隔
+  lineHeight?: Responsive<LineHeight> // 行の高さ
+  textAlign?: Responsive<string> // テキストの配置
+  color?: Responsive<Color> // テキストの色
+  backgroundColor?: Responsive<Color> // 背景色
+  width?: Responsive<string> // 幅
+  height?: Responsive<string> // 高さ
+  minWidth?: Responsive<string> // 最小幅
+  minHeight?: Responsive<string> // 最小高さ
+  display?: Responsive<string> // 表示設定
+  border?: Responsive<string> // ボーダー
+  overflow?: Responsive<string> // オーバーフロー
+  margin?: Responsive<Space> // マージン
+  marginTop?: Responsive<Space> // 上側のマージン
+  marginRight?: Responsive<Space> // 右側のマージン
+  marginBottom?: Responsive<Space> // 下側のマージン
+  marginLeft?: Responsive<Space> // 左側のマージン
+  padding?: Responsive<Space> // パディング
+  paddingTop?: Responsive<Space> // 上側のパディング
+  paddingRight?: Responsive<Space> // 右側のパディング
+  paddingBottom?: Responsive<Space> // 下側のパディング
+  paddingLeft?: Responsive<Space> // 左側のパディング
   pseudoClass?: {
+    // 擬似クラス
     hover?: {
-      backgroundColor?: Responsive<Color>
+      // ホバー時のスタイル
+      backgroundColor?: Responsive<Color> // 背景色
     }
     disabled?: {
-      backgroundColor?: Responsive<Color>
+      // 無効化時のスタイル
+      backgroundColor?: Responsive<Color> // 背景色
     }
   }
 }
 
+/**
+ * ボタンの種類ごとのスタイルを定義したオブジェクト
+ */
 const variants = {
-  // プライマリ
   primary: {
     color: 'white',
     backgroundColor: 'primary',
@@ -64,7 +74,6 @@ const variants = {
       },
     },
   },
-  // セカンダリ
   secondary: {
     color: 'white',
     backgroundColor: 'secondary',
@@ -78,7 +87,6 @@ const variants = {
       },
     },
   },
-  // デンジャー
   danger: {
     color: 'white',
     backgroundColor: 'danger',
@@ -94,17 +102,16 @@ const variants = {
   },
 }
 
-/**
- * ボタン
- * バリアント、色、タイポグラフィ、レイアウト、スペース関連のPropsを追加
- */
+// Styled ComponentsのButtonコンポーネント
 const Button = styled.button<ButtonProps>`
   ${({ variant, color, backgroundColor, pseudoClass, theme }) => {
-    // バリアントのスタイルの適用
+    // variantがtruthyで、variantsオブジェクトにvariantが存在する場合
     if (variant && variants[variant]) {
       const styles = []
+      // colorがない場合、variantsからcolorを取得し、スタイルを生成する
       !color &&
         styles.push(toPropValue('color', variants[variant].color, theme))
+      // backgroundColorがない場合、variantsからbackgroundColorを取得し、スタイルを生成する
       !backgroundColor &&
         styles.push(
           toPropValue(
@@ -113,6 +120,7 @@ const Button = styled.button<ButtonProps>`
             theme,
           ),
         )
+      // pseudoClassがない場合、hoverとdisabledのスタイルを生成する
       !pseudoClass &&
         styles.push(
           `&:hover {
@@ -136,6 +144,7 @@ const Button = styled.button<ButtonProps>`
       return styles.join('\n')
     }
   }}
+
   ${(props) => toPropValue('font-size', props.fontSize, props.theme)}
   ${(props) => toPropValue('letter-spacing', props.letterSpacing, props.theme)}
   ${(props) => toPropValue('line-height', props.lineHeight, props.theme)}
@@ -159,6 +168,7 @@ const Button = styled.button<ButtonProps>`
   ${(props) => toPropValue('padding-left', props.paddingLeft, props.theme)}
   ${(props) => toPropValue('padding-bottom', props.paddingBottom, props.theme)}
   ${(props) => toPropValue('padding-right', props.paddingRight, props.theme)}
+
   &:hover {
     ${(props) =>
       toPropValue(
@@ -166,6 +176,7 @@ const Button = styled.button<ButtonProps>`
         props?.pseudoClass?.hover?.backgroundColor,
       )}
   }
+
   &:disabled {
     ${(props) =>
       toPropValue(
@@ -173,6 +184,7 @@ const Button = styled.button<ButtonProps>`
         props?.pseudoClass?.disabled?.backgroundColor,
       )}
   }
+
   cursor: pointer;
   outline: 0;
   text-decoration: 'none';
@@ -181,17 +193,18 @@ const Button = styled.button<ButtonProps>`
   border: none;
 `
 
+// Buttonコンポーネントのデフォルトpropsを定義する
 Button.defaultProps = {
-  variant: 'primary',
-  paddingLeft: 2,
-  paddingRight: 2,
-  paddingTop: 1,
-  paddingBottom: 1,
-  color: 'white',
-  display: 'inline-block',
-  textAlign: 'center',
-  lineHeight: 'inherit',
-  fontSize: 'inherit',
+  variant: 'primary', // ボタンの種類をprimaryに設定する
+  paddingLeft: 2, // 左側のパディングを2に設定する
+  paddingRight: 2, // 右側のパディングを2に設定する
+  paddingTop: 1, // 上側のパディングを1に設定する
+  paddingBottom: 1, // 下側のパディングを1に設定する
+  color: 'white', // ボタンのテキスト色を白に設定する
+  display: 'inline-block', // ボタンの表示方法をinline-blockに設定する
+  textAlign: 'center', // テキストの水平方向の揃え方を中央揃えに設定する
+  lineHeight: 'inherit', // 行の高さを親要素から継承するように設定する
+  fontSize: 'inherit', // フォントサイズを親要素から継承するように設定する
 }
 
 export default Button
