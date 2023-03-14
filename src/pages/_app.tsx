@@ -4,7 +4,7 @@ import { createGlobalStyle } from 'styled-components'
 
 /**
  * styled-component
- * createGlobalStyle関数を使用してグローバルのスタイルを定義
+ * createGlobalStyle関数を使用してグローバルのスタイルを定義する
  */
 const GlobalStyle = createGlobalStyle`
   html,
