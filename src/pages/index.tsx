@@ -15,15 +15,15 @@ const HomePage: NextPage = () => {
           flexDirection={{ base: 'column', md: 'row' }}
         >
           <Box width="100%">
-            <Text as="h1" marginBottom={0} color="white" variant="extraLarge">
+            <Text as="h1" marginBottom={0} variant="extraLarge">
               kasikari C2Cで
             </Text>
-            <Text as="h1" marginTop={0} color="white" variant="extraLarge">
+            <Text as="h1" marginTop={0} variant="extraLarge">
               お気に入りのアイテムを見つけよう
             </Text>
           </Box>
           <Box width="100%">
-            <Text as="p" color="white" variant="mediumLarge">
+            <Text as="p" variant="mediumLarge">
               このアプリはTypeScript/Next.jsで作成されており、バックエンドはfirebaseが使用されています。
             </Text>
           </Box>
