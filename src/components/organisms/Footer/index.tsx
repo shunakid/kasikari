@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import styled from 'styled-components'
-import { GitHubIcon } from 'components/atoms/IconButton'
 import Text from 'components/atoms/Text'
 import Box from 'components/layout/Box'
 import Flex from 'components/layout/Flex'
@@ -26,17 +25,17 @@ const Footer = () => {
           <nav>
             <Box marginBottom={2}>
               <Link href="/" passHref>
-                <Anchor as="a">トップ</Anchor>
+                <Anchor>トップ</Anchor>
               </Link>
             </Box>
             <Box marginBottom={2}>
               <Link href="/" passHref>
-                <Anchor as="a">採用</Anchor>
+                <Anchor>採用</Anchor>
               </Link>
             </Box>
             <Box marginBottom={2}>
               <Link href="/" passHref>
-                <Anchor as="a">お知らせ</Anchor>
+                <Anchor>お知らせ</Anchor>
               </Link>
             </Box>
           </nav>
@@ -48,36 +47,23 @@ const Footer = () => {
           <nav>
             <Box marginBottom={2}>
               <Link href="/" passHref>
-                <Anchor as="a">利用規約</Anchor>
+                <Anchor>利用規約</Anchor>
               </Link>
             </Box>
             <Box marginBottom={2}>
               <Link href="/" passHref>
-                <Anchor as="a">プライバシーポリシー</Anchor>
+                <Anchor>プライバシーポリシー</Anchor>
               </Link>
             </Box>
             <Box marginBottom={2}>
               <Link href="/" passHref>
-                <Anchor as="a">配送と返品</Anchor>
+                <Anchor>配送と返品</Anchor>
               </Link>
             </Box>
           </nav>
         </Box>
-        <Box minWidth={{ base: '100%', md: '120px' }}>
-          <nav>
-            <Anchor
-              as="a"
-              href="https://github.com/gihyo-book/ts-nextbook-app"
-              target="_blank"
-            >
-              <GitHubIcon size={22} />
-            </Anchor>
-          </nav>
-        </Box>
+        <Box minWidth={{ base: '100%', md: '120px' }}></Box>
       </Flex>
-      <Box paddingTop={3} paddingBottom={2}>
-        <Text>© 2021 Gijutsuhyoronsha Co., Ltd.. All rights reserved.</Text>
-      </Box>
     </footer>
   )
 }
